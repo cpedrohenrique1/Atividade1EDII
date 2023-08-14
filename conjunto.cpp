@@ -1,7 +1,9 @@
 #include "conjunto.h"
 #include <ctime>
 
-Conjunto::Conjunto(int tamanho)
+Conjunto::Conjunto(int tamanho):
+    tamanho(0),
+    array(0)
 {
     if (tamanho <= 0)
     {
@@ -9,7 +11,8 @@ Conjunto::Conjunto(int tamanho)
     }
     try{
         array = new int[tamanho];
-        std::srand(time(0));
+        this->tamanho = tamanho;
+        srand(time(0));
         for (int i = 0; i < tamanho; i++)
         {
             array[i] = rand() % 1001;
@@ -32,7 +35,8 @@ QString Conjunto::getConjunto() const
             saida += QString::number(array[i]);
         }
         else{
-            saida += QString::number(array[i]) + " | ";
+            saida += QString::number(array[i]);
+            saida += " | ";
         }
     }
     return saida;
